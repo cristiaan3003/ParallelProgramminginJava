@@ -1,5 +1,6 @@
 Parallel Programming RICE by Coursera
 
+MY CERTIFICATE: https://www.coursera.org/account/accomplishments/records/LAD3Z87NJSEU
 
 https://www.coursera.org/learn/parallel-programming-in-java
 http://guanzhou.pub/2018/05/02/Parallel-Programming-in-Java
