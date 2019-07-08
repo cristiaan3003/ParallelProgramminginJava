@@ -1,6 +1,7 @@
 package edu.coursera.parallel;
 
-import static edu.rice.pcdp.PCDP.forseq2d;
+import static edu.rice.pcdp.PCDP.*;
+import edu.rice.pcdp.PCDP;
 
 /**
  * Wrapper class for implementing matrix multiply efficiently in parallel.
@@ -22,15 +23,24 @@ public final class MatrixMultiply {
      */
     public static void seqMatrixMultiply(final double[][] A, final double[][] B,
             final double[][] C, final int N) {
+    	//long startTime = System.nanoTime();
         forseq2d(0, N - 1, 0, N - 1, (i, j) -> {
             C[i][j] = 0.0;
             for (int k = 0; k < N; k++) {
                 C[i][j] += A[i][k] * B[k][j];
             }
         });
+        //long timeInNanos = System.nanoTime() - startTime;
+        //printResults("seqMatrixMultiply",timeInNanos,C[N-1][N-1]);
     }
 
-    /**
+    //private static void printResults(String name, long timeInNanos, double sum) {
+		// TODO Auto-generated method stub
+    //	System.out.printf(" %s completed in %8.3f milliseconds, with C[N-1][N-1] = 8.5f \n",name, timeInNanos / 1e6, sum);
+		
+	//}
+
+	/**
      * Perform a two-dimensional matrix multiply (A x B = C) in parallel.
      *
      * @param A An input matrix with dimensions NxN
@@ -44,15 +54,15 @@ public final class MatrixMultiply {
          * TODO Parallelize this outermost two-dimension sequential loop to
          * achieve performance improvement.
          */
-        forseq2d(0, N - 1, 0, N - 1, (i, j) -> {
+    	//long startTime = System.nanoTime();
+        PCDP.forall2dChunked(0, N - 1, 0, N - 1,4,(i, j) -> {
             C[i][j] = 0.0;
             for (int k = 0; k < N; k++) {
                 C[i][j] += A[i][k] * B[k][j];
             }
         });
-    }
+        //long timeInNanos = System.nanoTime() - startTime;
+        //printResults("parMatrixMultiply",timeInNanos,C[N-1][N-1]);
     
-    public static void main(String[] args) {
-        System.out.println("console out"); // Display out.
     }
 }
