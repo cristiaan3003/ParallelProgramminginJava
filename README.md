@@ -1,4 +1,4 @@
-Parallel Programming UNAM by Coursera
+Parallel Programming RICE by Coursera
 
 
 https://www.coursera.org/learn/parallel-programming-in-java
